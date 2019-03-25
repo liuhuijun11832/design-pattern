@@ -23,9 +23,6 @@ public abstract class AbstractHandler {
         this.nextHandler = nextHandler;
     }
 
-    public void setRequireType(String requireType) {
-        this.requireType = requireType;
-    }
 
     //处理请求
     public final void processRequire(IRequirement requirement){

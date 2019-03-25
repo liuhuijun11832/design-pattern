@@ -8,12 +8,8 @@ package com.example.demo.responsibilitychain;
 public class Controller {
 
     public static void main(String[] args) {
-        AbstractHandler coder = new Coder();
-        AbstractHandler ui = new Ui();
-        AbstractHandler product = new Product();
 
-        product.setNextHandler(coder);
-        coder.setNextHandler(ui);
+        AbstractHandler product = MappingHandler.findHandler();
 
         IRequirement coderRequire = new CoderRequirment();
         IRequirement functionRequire = new FunctionRequirement();
@@ -32,6 +28,20 @@ public class Controller {
         product.processRequire(functionRequire);
         product.processRequire(unkonwnRequire);
 
+    }
+
+}
+
+class MappingHandler{
+
+    public static AbstractHandler findHandler(){
+        AbstractHandler coder = new Coder();
+        AbstractHandler ui = new Ui();
+        AbstractHandler product = new Product();
+
+        product.setNextHandler(coder);
+        coder.setNextHandler(ui);
+        return product;
     }
 
 }
